@@ -1,5 +1,3 @@
-// example/main.dart
-
 import 'package:dart_qjson/dart_qjson.dart';
 import 'package:dart_qvariant/dart_qvariant.dart';
 
