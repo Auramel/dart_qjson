@@ -106,8 +106,12 @@ class JsonObject {
   /// final variant = obj.get("num");
   /// print(variant.toInt()); // prints: 42
   /// ```
-  Variant get(final String key) {
+  Variant? get(final String key) {
     final dynamic value = _data[key];
+
+    if (value == null) {
+      return null;
+    }
 
     if (value is Map) {
       throw UnsupportedError(
@@ -135,11 +139,11 @@ class JsonObject {
   /// final user = obj.getObject("user");
   /// print(user.get("id").toInt()); // prints: 1
   /// ```
-  JsonObject getObject(final String key) {
+  JsonObject? getObject(final String key) {
     final dynamic value = _data[key];
 
     if (value == null) {
-      return JsonObject.empty();
+      return null;
     }
 
     if (value is Map) {
@@ -162,11 +166,11 @@ class JsonObject {
   /// final tags = obj.getList("tags");
   /// print(tags.get(0).toText()); // prints: dart
   /// ```
-  JsonList getList(final String key) {
+  JsonList? getList(final String key) {
     final dynamic value = _data[key];
 
     if (value == null) {
-      return JsonList.empty();
+      return null;
     }
 
     if (value is List) {

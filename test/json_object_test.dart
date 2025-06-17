@@ -30,32 +30,32 @@ void main() {
 
       // Retrieve nested object "user"
       final userObject = jsonObject.getObject('user');
-      final idVariant = userObject.get('id');
-      final idActual = idVariant.toInt();
+      final idVariant = userObject?.get('id');
+      final idActual = idVariant?.toInt();
       final idExpected = 1;
       print('user.id - expected: $idExpected, actual: $idActual');
       expect(idActual, equals(idExpected));
 
-      final nameVariant = userObject.get('name');
+      final nameVariant = userObject?.get('name');
       final nameActual = nameVariant.toString();
       final nameExpected = 'Alice';
       print('user.name - expected: "$nameExpected", actual: "$nameActual"');
       expect(nameActual, equals(nameExpected));
 
-      final activeVariant = userObject.get('active');
-      final activeActual = activeVariant.toBoolean();
+      final activeVariant = userObject?.get('active');
+      final activeActual = activeVariant?.toBoolean();
       final activeExpected = true;
       print('user.active - expected: $activeExpected, actual: $activeActual');
       expect(activeActual, equals(activeExpected));
 
       // Retrieve "tags" as JsonList
       final tagsList = jsonObject.getList('tags');
-      final tagsLengthActual = tagsList.length;
+      final tagsLengthActual = tagsList?.length;
       final tagsLengthExpected = 2;
       print('tags.length - expected: $tagsLengthExpected, actual: $tagsLengthActual');
       expect(tagsLengthActual, equals(tagsLengthExpected));
 
-      final firstTagActual = tagsList.get(0).toString();
+      final firstTagActual = tagsList?.get(0).toString();
       final firstTagExpected = 'dart';
       print('tags[0] - expected: "$firstTagExpected", actual: "$firstTagActual"');
       expect(firstTagActual, equals(firstTagExpected));
@@ -109,8 +109,8 @@ void main() {
       final jsonObject = JsonObject.fromJsonString(jsonString);
 
       final emptyObj = jsonObject.getObject('maybeNull');
-      print('getObject("maybeNull").isEmpty - expected: true, actual: ${emptyObj.isEmpty}');
-      expect(emptyObj.isEmpty, isTrue);
+      print('getObject("maybeNull").isEmpty - expected: true, actual: ${emptyObj?.isEmpty}');
+      expect(emptyObj?.isEmpty, isTrue);
 
       print('Expecting getObject("notObj") to throw UnsupportedError');
       expect(
@@ -124,8 +124,8 @@ void main() {
       final jsonObject = JsonObject.fromJsonString(jsonString);
 
       final emptyList = jsonObject.getList('maybeNull');
-      print('getList("maybeNull").isEmpty - expected: true, actual: ${emptyList.isEmpty}');
-      expect(emptyList.isEmpty, isTrue);
+      print('getList("maybeNull").isEmpty - expected: true, actual: ${emptyList?.isEmpty}');
+      expect(emptyList?.isEmpty, isTrue);
 
       print('Expecting getList("notList") to throw UnsupportedError');
       expect(

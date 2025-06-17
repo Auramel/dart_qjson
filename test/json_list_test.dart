@@ -29,13 +29,13 @@ void main() {
 
       // First element
       final firstObj = jsonList.getObject(0);
-      final idVar = firstObj.get('id');
-      final idActual = idVar.toInt();
+      final idVar = firstObj?.get('id');
+      final idActual = idVar?.toInt();
       final idExpected = 1;
       print('firstObj.id - expected: $idExpected, actual: $idActual');
       expect(idActual, equals(idExpected));
 
-      final nameVar = firstObj.get('name');
+      final nameVar = firstObj?.get('name');
       final nameActual = nameVar.toString();
       final nameExpected = 'A';
       print('firstObj.name - expected: "$nameExpected", actual: "$nameActual"');
@@ -43,14 +43,14 @@ void main() {
 
       // Second element
       final secondObj = jsonList.getObject(1);
-      final secondIdActual = secondObj.get('id').toInt();
+      final secondIdActual = secondObj?.get('id')?.toInt();
       final secondIdExpected = 2;
       print('secondObj.id - expected: $secondIdExpected, actual: $secondIdActual');
       expect(secondIdActual, equals(secondIdExpected));
 
       // Third element
       final numVariant = jsonList.get(2);
-      final numActual = numVariant.toInt();
+      final numActual = numVariant?.toInt();
       final numExpected = 100;
       print('element[2] - expected: $numExpected, actual: $numActual');
       expect(numActual, equals(numExpected));
@@ -111,8 +111,8 @@ void main() {
       final jsonList = JsonList.fromJsonString(jsonArray);
 
       final emptyObj = jsonList.getObject(0);
-      print('getObject(0).isEmpty - expected: true, actual: ${emptyObj.isEmpty}');
-      expect(emptyObj.isEmpty, isTrue);
+      print('getObject(0).isEmpty - expected: null, actual: ${emptyObj?.isEmpty}');
+      expect(emptyObj?.isEmpty, isNull);
 
       print('Expecting getObject(1) to throw UnsupportedError');
       expect(
@@ -126,8 +126,8 @@ void main() {
       final jsonList = JsonList.fromJsonString(jsonArray);
 
       final emptyList = jsonList.getList(0);
-      print('getList(0).isEmpty - expected: true, actual: ${emptyList.isEmpty}');
-      expect(emptyList.isEmpty, isTrue);
+      print('getList(0).isEmpty - expected: null, actual: ${emptyList?.isEmpty}');
+      expect(emptyList?.isEmpty, isNull);
 
       print('Expecting getList(1) to throw UnsupportedError');
       expect(

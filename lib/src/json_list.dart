@@ -110,12 +110,16 @@ class JsonList {
   /// final variant = jsonList.get(1);
   /// print(variant.toText()); // prints: text
   /// ```
-  Variant get(final int index) {
+  Variant? get(final int index) {
     if (!contains(index)) {
       throw RangeError.index(index, _data, 'index');
     }
 
     final dynamic value = _data[index];
+
+    if (value == null) {
+      return null;
+    }
 
     if (value is Map) {
       throw UnsupportedError('Value at index $index is a Map; use getObject("$index") instead.');
@@ -143,7 +147,7 @@ class JsonList {
   /// final emptyObj = jsonList.getObject(1);
   /// print(emptyObj.isEmpty); // prints: true
   /// ```
-  JsonObject getObject(final int index) {
+  JsonObject? getObject(final int index) {
     if (!contains(index)) {
       throw RangeError.index(index, _data, 'index');
     }
@@ -151,7 +155,7 @@ class JsonList {
     final dynamic value = _data[index];
 
     if (value == null) {
-      return JsonObject.empty();
+      return null;
     }
 
     if (value is Map) {
@@ -176,7 +180,7 @@ class JsonList {
   /// final emptyNested = jsonList.getList(2);
   /// print(emptyNested.isEmpty); // prints: true
   /// ```
-  JsonList getList(final int index) {
+  JsonList? getList(final int index) {
     if (!contains(index)) {
       throw RangeError.index(index, _data, 'index');
     }
@@ -184,7 +188,7 @@ class JsonList {
     final dynamic value = _data[index];
 
     if (value == null) {
-      return JsonList.empty();
+      return null;
     }
 
     if (value is List) {
