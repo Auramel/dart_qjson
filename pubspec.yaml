@@ -1,6 +1,6 @@
 name: dart_qjson
 description: Immutable Qt-style JSON object and list wrappers for Dart, providing type-safe access and smart casting via Variant
-version: 1.0.1
+version: 1.0.2
 
 repository: https://github.com/Auramel/dart_qjson
 
